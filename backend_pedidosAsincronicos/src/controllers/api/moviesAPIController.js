@@ -170,13 +170,29 @@ const moviesAPIController = {
                             id:req.params.id
                         }
                     })
-                    .then(()=> {
-                        return res.redirect('/')
-
+                    .then(confirm=> {
+                        if(confirm){
+                            respuesta ={
+                                meta: {
+                                    status: 200,
+                                    total: confirm.length,
+                                    url: 'api/movies/:id'
+                                },
+                                data:confirm
+                            }
+                        }else{
+                            respuesta ={
+                                meta: {
+                                    status: 204,
+                                    total: confirm.length,
+                                    url: 'api/movies/update/:id'
+                                },
+                                data:confirm
+                            }
+                        }
+                        res.json(respuesta);
                 } )
         })
-
-        
         }).catch(error => console.log(error))
 
     }

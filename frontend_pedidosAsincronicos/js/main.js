@@ -18,6 +18,7 @@ window.onload = async () => {
     }
   }
 
+  updateBannerVisibility()
   //Despues hacemos una funcion que recibe el id de una pelicula y la estrella para preguntar si estamos guardando o quitando una pelicula en favoritas
   function toggleFavorita(movieId, estrella) {
     if (favoritas.includes(movieId)) {
@@ -31,7 +32,6 @@ window.onload = async () => {
   
     // Actualizamos la lista de peliculas de favoritas
     localStorage.setItem("favoritas", JSON.stringify(favoritas));
-    updateBannerVisibility()
   }
   try {
     const response = await fetch('http://localhost:3031/api/movies')

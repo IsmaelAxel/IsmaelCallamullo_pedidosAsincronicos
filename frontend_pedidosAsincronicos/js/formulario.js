@@ -48,6 +48,7 @@ window.onload = async () => {
                 const movieCreated = resultCreate.data;
                 console.log(`Producto creado -> ${movieCreated.title}`)
                 alert(`Pelicula '${movieCreated.title}' creada con exito`)
+                window.location.href = 'home.html'
         } catch (error) {
             console.log(`Error al cargar los archivos`)
         }
@@ -81,7 +82,8 @@ window.onload = async () => {
                 const resultUpdate = await update.json()
                 console.log(resultUpdate)
                 console.log(`Pelicula editada con exito`)
-                alert(`Pelicula edita con exito`)
+                alert(`Pelicula editada con exito`)
+                window.location.href = 'home.html'
         } catch (error) {
             console.log(`Error al cargar los archivos`)
         }
@@ -98,14 +100,10 @@ window.onload = async () => {
             const destroy = await fetch(`http://localhost:3031/api/movies/delete/${movieToDelete}`, {
                 method: 'DELETE',
             });
-    
-            if (destroy.ok) {
-                const resultDestroy = await destroy.json();
-                console.log(resultDestroy)
-                window.location.href = '/home.html'
-            } else {
-                console.error('Error al intentar eliminar la película:', destroy.statusText);
-            }
+            const resultDestroy = await destroy.json();
+            console.log(resultDestroy)
+            alert('Producto eliminado correctamente')
+            window.location.href = 'home.html'
         } catch (error) {
             console.error('Error en la solicitud de eliminación:', error);
         }
